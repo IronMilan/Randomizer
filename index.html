@@ -1,46 +1,80 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-      <title> Rundomizer </title>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<head>
+ <title>Рандомайзер</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   background-color: #f2f2f2;
+  }
+  h1 {
+   text-align: center;
+   color: #333;
+  }
+  form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 50px;
+  }
+  input[type="number"] {
+   padding: 10px;
+   border-radius: 5px;
+   border: none;
+   margin-bottom: 20px;
+   width: 300px;
+   font-size: 16px;
+  }
+  button {
+   background-color: #333;
+   color: #fff;
+   padding: 10px 20px;
+   border-radius: 5px;
+   border: none;
+   cursor: pointer;
+   font-size: 16px;
+   transition: all 0.3s ease-in-out;
+  }
+  button:hover {
+   background-color: #fff;
+   color: #333;
+   border: 1px solid #333;
+  }
+  .result {
+   display: none;
+   text-align: center;
+   margin-top: 50px;
+  }
+ </style>
+</head>
+<body>
+ <h1>Рандомайзер</h1>
+ <form>
+  <label for="min">Минимальное значение:</label>
+  <input type="number" id="min" name="min" required>
 
-    </head>
+  <label for="max">Максимальное значение:</label>
+  <input type="number" id="max" name="max" required>
 
-  <body>
-	 <form action="" method="get" class="randomizer">
-  		<div class="randomizer">
-    			<label for="name">Введите начальное число: </label>
-    			<input type="text" name="first" id="frstnmbr" required>
-  		</div>
- 		<div class="randomizer">
-    			<label for="email">Введите конец диапозона: </label>
-    			<input type="text" name="second" id="scndnmbr" required>
-  		</div>
-	</form>
- 	
-	<div>
-   		<button id="btnid" type="button" onClick="runRND()"> Нажми! </button>
-  	</div>
+  <button type="button" onclick="generateRandom()">Сгенерировать случайное число</button>
+ </form>
 
+ <div class="result">
+  <h2>Случайное число:</h2>
+  <p id="randomNumber"></p>
+ </div>
 
-    <b>Рандомное число: <div id='rndnmbr'></div></b>
-	
-	<script>
-		function runRND() {
-			var frst = document.getElementById("frstnmbr").value;
-			var scnd = document.getElementById("scndnmbr").value;
-			var rnd = Math.floor(Math.random() * (scnd - frst + 1) ) + Math.floor(frst);
-			document.getElementById("rndnmbr").innerHTML = rnd;
-		}
-	
-	
-	</script>
-	
-	
+ <script>
+  function generateRandom() {
+   var min = parseInt(document.getElementById("min").value);
+   var max = parseInt(document.getElementById("max").value);
 
-  </body>
+   var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+   document.getElementById("randomNumber").innerHTML = randomNumber;
+
+   document.querySelector(".result").style.display = "block";
+  }
+ </script>
+</body>
 </html>
